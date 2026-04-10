@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://jrl48eof4jix"]
+
+[ext_resource type="Texture2D" uid="uid://cfe520d1blkd2" path="res://icon.svg" id="1_4j1f4"]
+[ext_resource type="Script" uid="uid://5us27efhwsu" path="res://scripts/pusher.gd" id="1_xqhj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqhj7"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7ig7"]
+size = Vector2(66, 65)
+
+[node name="Pusher" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_xqhj7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xqhj7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4j1f4")
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
+target_position = Vector2(-500, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PushBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushBox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_d7ig7")
+
+[node name="BlindTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="area_entered" from="PushBox" to="." method="_on_push_box_area_entered"]
+[connection signal="body_entered" from="PushBox" to="." method="_on_push_box_body_entered"]
+[connection signal="timeout" from="BlindTimer" to="." method="_on_blind_timer_timeout"]

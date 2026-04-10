@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ww7f8v07wq54"]
+
+[ext_resource type="Texture2D" uid="uid://cfe520d1blkd2" path="res://icon.svg" id="1_c35m8"]
+[ext_resource type="Script" uid="uid://fjhpbmq7sd3d" path="res://scripts/car.gd" id="1_qt2eu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt2eu"]
+size = Vector2(108, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50v30"]
+size = Vector2(20, 100)
+
+[node name="Car" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_qt2eu")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 14)
+scale = Vector2(1, 0.78125)
+texture = ExtResource("1_c35m8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(10, 14)
+shape = SubResource("RectangleShape2D_qt2eu")
+
+[node name="Bouncebox" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Bouncebox"]
+position = Vector2(-54, 14)
+shape = SubResource("RectangleShape2D_50v30")
+
+[connection signal="body_entered" from="CharacterBody2D/Bouncebox" to="CharacterBody2D" method="_on_bouncebox_body_entered"]
