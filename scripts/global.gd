@@ -5,7 +5,8 @@ enum State {
 	running,
 	jumping,
 	hit,
-	bling
+	bling,
+	hidden
 }
 
 enum Level {

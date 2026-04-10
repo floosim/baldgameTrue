@@ -14,6 +14,7 @@ basic:
 			idle - done
 			running - done
 			jumping
+			hide
 	background people assets
 stage 2 
 	stage 2 beginning cutscene
@@ -23,6 +24,7 @@ stage 2
 stage 3
 	stage 3 beginning cutscene
 	stealth mechanic
+	hide ability on
 	jump and bling ability disabled
 	reset when caught
 stage 4

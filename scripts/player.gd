@@ -11,6 +11,7 @@ var current_state = Global.State.idle
 var current_level = Global.Level.ONE
 
 var enemy_in_range = false
+var can_hide = false
 
 signal Blind
 
@@ -37,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	elif current_state != Global.State.hit:
 		current_state = Global.State.idle
 	
-	
+	# Bling ability
 	if Input.is_action_pressed("bling") and current_state != Global.State.hit:
 		current_state = Global.State.bling
 		speed = 0
@@ -47,14 +48,22 @@ func _physics_process(delta: float) -> void:
 	
 	if enemy_in_range == true and Input.is_action_pressed("bling"):
 		Blind.emit()
-
-
+	
+	# hide system?
+	if Input.is_action_pressed("hide") and current_state == Global.State.idle:
+		current_state = Global.State.hidden
+	if Input.is_action_just_released("hide") and current_state == Global.State.idle:
+		current_state = Global.State.idle
+	
+	# animation states
 	if current_state == Global.State.jumping:
 		animated_sprite.play("jumping")
 	elif current_state == Global.State.running:
 		animated_sprite.play("running")
 	elif current_state == Global.State.idle:
 		animated_sprite.play("idle")
+	elif current_state == Global.State.bling:
+		animated_sprite.play("bling")
 
 	
 	
@@ -69,14 +78,15 @@ func _on_hit_timer_timeout() -> void:
 func _on_bling_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		enemy_in_range = true
-	#if current_state == Global.State.bling and body.is_in_group("enemy"):
-		#Blind.emit()
+	if body.is_in_group("hiddingspot"):
+		can_hide = true
 
 
 func _on_bling_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		enemy_in_range = false
-
+	if body.is_in_group("hiddingspot"):
+		can_hide = false
 
 func blind_enemy():
 	pass

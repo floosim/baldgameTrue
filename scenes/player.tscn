@@ -6,10 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bnoljhvehnbj7" path="res://sprites/bald jump-Sheet.png" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bxd4vo4s5tew1" path="res://sprites/bald running-Sheet.png" id="5_smehm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
-atlas = ExtResource("2_qlg0r")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_qlg0r")
 region = Rect2(16, 0, 16, 16)
@@ -21,6 +17,10 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
 atlas = ExtResource("2_qlg0r")
 region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
 atlas = ExtResource("3_tuyoq")
@@ -110,9 +110,6 @@ region = Rect2(144, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ur7pv")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_y4r1p")
 }, {
 "duration": 1.0,
@@ -120,6 +117,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3v2ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur7pv")
 }],
 "loop": true,
 "name": &"bling",
@@ -205,7 +205,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(10, 15)
+size = Vector2(10, 15.375)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 104.019
@@ -217,10 +217,10 @@ script = ExtResource("1_g2els")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_md1ol")
-animation = &"idle"
+animation = &"bling"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1.25)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_g2els")
 

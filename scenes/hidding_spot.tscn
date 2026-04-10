@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://uq03oh6spia2"]
+
+[ext_resource type="Script" uid="uid://cl7yv313472j6" path="res://scripts/hidding_spot.gd" id="1_4q7ri"]
+[ext_resource type="Texture2D" uid="uid://cfe520d1blkd2" path="res://icon.svg" id="2_guwp7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3aopk"]
+radius = 137.091
+
+[node name="hidding spot" type="Node2D" groups=["hiddingspot"]]
+script = ExtResource("1_4q7ri")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.341176, 0.0862745, 0, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_guwp7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3aopk")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
