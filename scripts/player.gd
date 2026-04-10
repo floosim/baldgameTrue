@@ -8,6 +8,8 @@ const JUMP_VELOCITY = -800.0
 
 var current_state = Global.State.idle
 
+var current_level = Global.Level.ONE
+
 var enemy_in_range = false
 
 signal Blind
@@ -18,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and current_level != Global.Level.THREE:
 		current_state = Global.State.jumping
 		velocity.y = JUMP_VELOCITY
 

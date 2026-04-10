@@ -7,3 +7,11 @@ enum State {
 	hit,
 	bling
 }
+
+enum Level {
+	ONE,
+	TWO,
+	THREE,
+	FOUR,
+	FIVE
+}

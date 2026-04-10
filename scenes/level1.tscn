@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://djbqfwtgm5veb"]
+[gd_scene load_steps=8 format=4 uid="uid://djbqfwtgm5veb"]
 
+[ext_resource type="Script" uid="uid://nx38chdocheh" path="res://scenes/level_1.gd" id="1_dwgg1"]
 [ext_resource type="Texture2D" uid="uid://1qwswqphe47f" path="res://block tiles.png" id="1_g2h75"]
 [ext_resource type="PackedScene" uid="uid://20wjs460krpt" path="res://scenes/player.tscn" id="2_wwpf4"]
 [ext_resource type="PackedScene" uid="uid://dwsscq8sq8jph" path="res://scenes/car_spawner.tscn" id="3_m7ahb"]
@@ -135,6 +136,7 @@ sources/0 = SubResource("TileSetAtlasSource_m7ahb")
 size = Vector2(312.5, 239)
 
 [node name="LevelRoot" type="Node2D"]
+script = ExtResource("1_dwgg1")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -157,5 +159,7 @@ limit_bottom = 400
 [node name="WinArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
-position = Vector2(20155.8, 120.5)
+position = Vector2(564, 122)
 shape = SubResource("RectangleShape2D_m7ahb")
+
+[connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
